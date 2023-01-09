@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
 
     @Autowired
-    BookService bookService;
+    BookRepository bookRepository;
 
     @GetMapping("/book")
-    public String book() {
-        bookService.hello();
-        return "hello";
+    public Book book() {
+        bookRepository.findAll().forEach(System.out::println);
+        Book book = bookRepository.findByIsbn("12123");
+        return book;
     }
 }
